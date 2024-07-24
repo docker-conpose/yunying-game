@@ -2,10 +2,7 @@ package com.joolun.web.api;
 
 import com.joolun.common.core.domain.AjaxResult;
 import com.joolun.mall.service.GoodsCategoryService;
-import com.joolun.mall.service.IDrugInfoService;
-import com.joolun.mall.service.IEquipmentInfoService;
 import com.joolun.mall.service.INoticeInfoService;
-import com.joolun.mall.service.impl.EquipmentInfoServiceImpl;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -29,11 +26,6 @@ public class WxHomeApi {
     @Autowired
     private GoodsCategoryService goodsCategoryService;
 
-    @Autowired
-    private IEquipmentInfoService equipmentService;
-
-    @Autowired
-    private IDrugInfoService drugInfoService;
 
     @Autowired
     private INoticeInfoService iNoticeInfoService;
@@ -55,18 +47,6 @@ public class WxHomeApi {
     @GetMapping({"/goods"})
     public AjaxResult goodsList() {
         return AjaxResult.success(goodsCategoryService.getGoodsSpuList());
-    }
-
-    @ApiOperation("获取用户旗下的设备")
-    @GetMapping({"/equipmentChart/{userId}"})
-    public AjaxResult equipmentChartByUserId(@PathVariable("userId") String userId) {
-        return AjaxResult.success(this.equipmentService.getEquipmentChartData(userId));
-    }
-
-    @ApiOperation("获取用户旗下的药包")
-    @GetMapping({"/drugInfoChart/{userId}"})
-    public AjaxResult drugInfoChartByUserId(@PathVariable("userId") String userId) {
-        return AjaxResult.success(this.drugInfoService.getDrugInfoChartData(userId));
     }
 
 }

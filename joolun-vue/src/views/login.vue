@@ -72,7 +72,7 @@
     </div>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2023-2030 www.mingcheng.com All Rights Reserved.</span>
+      <span>Copyright © 2023-2030 官网网址**** All Rights Reserved.</span>
     </div>
 
   </div>
