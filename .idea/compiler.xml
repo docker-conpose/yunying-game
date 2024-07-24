@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="joolun-common" />
+        <module name="joolun-quartz" />
+        <module name="joolun-generator" />
+        <module name="joolun-mall" />
+        <module name="joolun-admin" />
+        <module name="joolun-system" />
+        <module name="joolun-framework" />
+        <module name="joolun-weixin" />
+      </profile>
+    </annotationProcessing>
+  </component>
+</project>

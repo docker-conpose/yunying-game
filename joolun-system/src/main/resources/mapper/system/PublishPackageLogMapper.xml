@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.joolun.system.mapper.PublishPackageLogMapper">
+    
+    <resultMap type="PublishPackageLog" id="PublishPackageLogResult">
+        <result property="id"    column="id"    />
+        <result property="version"    column="version"    />
+        <result property="publishState"    column="publish_state"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+    </resultMap>
+
+    <sql id="selectPublishPackageLogVo">
+        select id, version, publish_state, create_time, update_time from publish_package_log
+    </sql>
+
+    <select id="selectPublishPackageLogList" parameterType="PublishPackageLog" resultMap="PublishPackageLogResult">
+        <include refid="selectPublishPackageLogVo"/>
+        <where>  
+            <if test="version != null  and version != ''"> and version = #{version}</if>
+            <if test="publishState != null "> and publish_state = #{publishState}</if>
+        </where>
+    </select>
+    
+    <select id="selectPublishPackageLogById" parameterType="Long" resultMap="PublishPackageLogResult">
+        <include refid="selectPublishPackageLogVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="uploadingPublishPackage" parameterType="PublishPackageLog" useGeneratedKeys="true" keyProperty="id">
+        insert into publish_package_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="version != null and version != ''">version,</if>
+            <if test="publishState != null">publish_state,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="version != null and version != ''">#{version},</if>
+            <if test="publishState != null">#{publishState},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+         </trim>
+    </insert>
+
+    <update id="publishPackage" parameterType="PublishPackageLog">
+        update publish_package_log
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="version != null and version != ''">version = #{version},</if>
+            <if test="publishState != null">publish_state = #{publishState},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+</mapper>
